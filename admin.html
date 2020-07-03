@@ -1,0 +1,35 @@
+<html>
+<head>
+<script type ="text/javascript">
+function readXML()
+{
+	var xml = new XMLHttpRequest();
+	xml.open('GET','admin.xml',false);
+	xml.send();
+	var xmlData = xml.responseText;
+	//document.write(xmlData);
+	if(xmlData)
+	{
+		xmlData=(new DOMParser()).parseFromString(xml.responseText,'text/xml');
+		var emp = xmlData.getElementsByTagName("employee");
+		var name = emp[0].getElementsByTagName("name")[0].firstChild.data;
+		var address = emp[0].getElementsByTagName("address")[0].firstChild.data;
+		var dob = emp[0].getElementsByTagName("dob")[0].firstChild.data;
+		var gender = emp[0].getElementsByTagName("gender")[0].firstChild.data;
+		var email = emp[0].getElementsByTagName("email")[0].firstChild.data;
+		var phone = emp[0].getElementsByTagName("phone")[0].firstChild.data;
+		document.write("Name : "+name+"<br>");
+		document.write("Address : "+address+"<br>");
+		document.write("DOB : "+dob+"<br>");
+		document.write("Gender : "+gender+"<br>");
+		document.write("Email : "+email+"<br>");
+		document.write("Phone : "+phone+"<br>");
+	}
+}
+</script>
+</head>
+<body>
+<a href="Home.html" >Home</a><br/><br/><br/>
+<button onclick = "readXML()">Reading Xml File</button>
+</body>
+</html>
